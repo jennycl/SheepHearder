@@ -53,7 +53,7 @@ var currentDog = {
   h:0
 };
 
-var orangeFont;
+//var orangeFont;
 
 
 //var currentDog = image (DogSprites,DogLeft1.xpos,DogLeft1.ypos,DogLeft1.w,DogLeft1.h,this.x,this.y,DogLeft1.w,DogLeft1.h);
@@ -72,7 +72,7 @@ function preload(){
   sound = loadSound('trim2.mov');
   sheepSound = loadSound('baa.mp3');
   
-  orangeFont = loadFont("/fonts/orangeJuice.ttf");
+  //orangeFont = loadFont("/fonts/Rich_M_Font.ttf");
 }
 
 function setup(){
@@ -89,7 +89,7 @@ function setup(){
     
 
     // create lots of sheep
-    for (var i = 0; i < 1; i++) {
+    for (var i = 0; i < 10; i++) {
       sheeps.push( new Sheep(random(width-canvasWidth/5), random(height),randomSheepPic()) );
     }
     
@@ -182,7 +182,7 @@ function draw(){
     }
     if (nextLevel() && timesPlayed < 2){
           // create lots of sheep
-      for (var i = 0; i < 2; i++) {
+      for (var i = 0; i < 20; i++) {
         sheeps.push( new Sheep(random(width-canvasWidth/5), random(height),randomSheepPic()) );
       }
       
