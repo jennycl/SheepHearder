@@ -6,11 +6,10 @@ var moveAwayTime = 5; // sheep moves away from dog when collision detected for 5
 
 var timeLeft;
 var timePassed = 0;
-var orangeFont;
 
 var theCanvas;
 var canvasWidth = 1000;
-var canvasHeight = 700;
+var canvasHeight = 600;
 var penX = canvasWidth;
 var penY = canvasHeight/2;
 var startButtonX = canvasWidth * 0.90;
@@ -54,6 +53,7 @@ var currentDog = {
   h:0
 };
 
+var orangeFont;
 
 
 //var currentDog = image (DogSprites,DogLeft1.xpos,DogLeft1.ypos,DogLeft1.w,DogLeft1.h,this.x,this.y,DogLeft1.w,DogLeft1.h);
@@ -72,7 +72,7 @@ function preload(){
   sound = loadSound('trim2.mov');
   sheepSound = loadSound('baa.mp3');
   
-  orangeFont = loadFont("fonts/orangeJuice.ttf");
+  orangeFont = loadFont("/fonts/orangeJuice.ttf");
 }
 
 function setup(){
@@ -783,6 +783,7 @@ function gameOver(){
 
 //This function displays start screen
 function startScreen(){
+  
  
   if (sound.isPlaying() === false){
     sound.play();
@@ -793,12 +794,12 @@ function startScreen(){
   timeLeft = 6000; // used for testing
   imageMode(CORNER);
   image(startscreen,0,0,canvasWidth,canvasHeight);
-  textSize(100);
-  textFont(orangeFont);
-  fill(255, 255, 153);
-  stroke(255, 255, 153);
-  text("Sheep Heard-er",canvasWidth/2, canvasHeight/8);
   drawButton(mouseX,mouseY);
+  
+  fill(255, 255, 151);
+  //textFont(orangeFont);
+  textSize(80);
+  text("Sheep Heard-er!", canvasWidth/2, canvasHeight/10);
   
   /*
   background(0);
@@ -831,7 +832,7 @@ function drawButton(testX, testY){
   fill(224,255,255); // blue-white
   stroke(116,209,23); // green
   strokeWeight(5);
-  rect(startButtonX, startButtonY, 90, 90);
+  rect(startButtonX, startButtonY, 120, 90);
     
   // start text
   textSize(26);
@@ -848,7 +849,7 @@ function drawButton(testX, testY){
     fill(116,209,23); //green
     stroke(224,255,255); // blue-white
     strokeWeight(5);
-    rect(startButtonX, startButtonY, 90, 90);
+    rect(startButtonX, startButtonY, 120, 90);
     
     // text
     fill(224,255,255);
