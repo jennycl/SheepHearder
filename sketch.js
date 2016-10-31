@@ -6,6 +6,7 @@ var moveAwayTime = 5; // sheep moves away from dog when collision detected for 5
 
 var timeLeft;
 var timePassed = 0;
+var orangeFont;
 
 var theCanvas;
 var canvasWidth = 1000;
@@ -70,6 +71,8 @@ function preload(){
   
   sound = loadSound('trim2.mov');
   sheepSound = loadSound('baa.mp3');
+  
+  orangeFont = loadFont("fonts/orangeJuice.ttf");
 }
 
 function setup(){
@@ -790,6 +793,11 @@ function startScreen(){
   timeLeft = 6000; // used for testing
   imageMode(CORNER);
   image(startscreen,0,0,canvasWidth,canvasHeight);
+  textSize(100);
+  textFont(orangeFont);
+  fill(255, 255, 153);
+  stroke(255, 255, 153);
+  text("Sheep Heard-er",canvasWidth/2, canvasHeight/8);
   drawButton(mouseX,mouseY);
   
   /*
