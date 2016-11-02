@@ -54,8 +54,6 @@ var count = 1;
 // hold number of frames
 var frames = 0;
 
-var instruction = false;
-
 // 'empty' object to figure out which dog image to use
 var currentDog = {
   xpos:0,
@@ -114,9 +112,6 @@ function draw(){
   // startScreen
   if(start == false && end == false){
     startScreen();
-    // if(instruction == true){
-    //   instructionScreen();
-    // }
   }
   
   // play game
@@ -738,23 +733,12 @@ function drawButton(testX, testY){
     text("START",startButtonX,startButtonY);
     
     //if start button is pressed, game starts
-    if(mouseIsPressed == true && instruction == false){
-      // start = true;
-      instruction = true;
-      instructionScreen();
+    if(mouseIsPressed == true){
+      start = true;
       sound.stop();
-      //play game music??
     }
     
-    if(mouseIsPressed == true && instruction == true){
-      start = true;
-    }
   }
-}
-
-function instructionScreen(){
-  background(0);
-  drawButton(mouseX,mouseY);
 }
 
 // objects to hold positions of the dog and sheep sprite within a larger image to determine which image to use
