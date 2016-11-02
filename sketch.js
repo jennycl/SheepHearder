@@ -7,8 +7,8 @@ var timePassed = 0;
 
 // canvas dimensions
 var theCanvas;
-var canvasWidth = 1000;
-var canvasHeight = 700;
+var canvasWidth = 900;
+var canvasHeight = 650;
 
 // pen dimensions and positioning
 var penX = canvasWidth;
