@@ -8,7 +8,7 @@ var timePassed = 0;
 // canvas dimensions
 var theCanvas;
 var canvasWidth = 1000;
-var canvasHeight = 600;
+var canvasHeight = 700;
 
 // pen dimensions and positioning
 var penX = canvasWidth;
@@ -39,6 +39,7 @@ var SheepSprites;
 var DogSprites;
 var canvas;
 var mic;
+var richFont;
 
 // background images depending on state
 var startscreen;
@@ -48,9 +49,12 @@ var backgroundImage;
 // keeps track of number of sheep left to herd
 var sheepLeft;
 
-//
+// keep count of which dog image to use
 var count = 1;
+// hold number of frames
 var frames = 0;
+
+var instruction = false;
 
 // 'empty' object to figure out which dog image to use
 var currentDog = {
@@ -69,6 +73,7 @@ function preload(){
   startscreen = loadImage("images/start-screen.png");
   endscreen = loadImage("images/end-screen.png");
   backgroundImage = loadImage("images/background-with-pen-fixed.png");
+  richFont = loadFont("fonts/Rich_M_Font.ttf");
   
   // load sounds
   sound = loadSound("sounds/trim2.mov");
@@ -98,7 +103,7 @@ function setup(){
   sheepLeft = sheeps.length;
     
   // create the dog
-  dog = new Dog(0,0);
+  dog = new Dog(canvasWidth/2,canvasHeight/2);
 }
 
 function draw(){
@@ -109,6 +114,9 @@ function draw(){
   // startScreen
   if(start == false && end == false){
     startScreen();
+    // if(instruction == true){
+    //   instructionScreen();
+    // }
   }
   
   // play game
@@ -117,8 +125,9 @@ function draw(){
     imageMode(CORNER);
     image(backgroundImage,0,0,canvasWidth,canvasHeight);
     textAlign(LEFT,TOP);
-    fill(255);
-    text("Time Left:" + ceil(timeLeft/60),20,20);
+    fill(0);
+    textSize(50);
+    text("Time Left :  " + ceil(timeLeft/60),20,20);
 
     // draw all of our sheeps
     for (var i = 0; i < sheeps.length; i++) {
@@ -657,17 +666,15 @@ function gameOver(){
     if(doYouWin()){
       stroke(255,209,5);
       fill(255,224,20);
-      strokeJoin(ROUND);
       strokeWeight(3);
-      textSize(50);
+      textSize(100);
       text("YOU WIN!",canvasWidth*0.05,canvasHeight*0.04);
     }
     else{
       stroke(255,209,5);
       fill(255,224,20);
-      strokeJoin(ROUND);
       strokeWeight(3);
-      textSize(50);
+      textSize(100);
       text("YOU LOSE.",canvasWidth*0.05,canvasHeight*0.04);
     }
   }
@@ -687,7 +694,11 @@ function startScreen(){
   drawButton(mouseX,mouseY);
   
   fill(255, 255, 151);
-  textSize(80);
+  textSize(150);
+  textFont(richFont);
+  stroke(255, 255, 151);
+  strokeWeight(5);
+  fill(0);
   text("Sheep Heard-er!", canvasWidth/2, canvasHeight/10);
 }
 
@@ -707,7 +718,7 @@ function drawButton(testX, testY){
   stroke(224,255,255); // blue-white
   strokeWeight(1);
   textStyle(BOLD);
-  textSize(26);
+  textSize(47);
   textAlign(CENTER,CENTER);
   text("START",startButtonX,startButtonY);
   
@@ -721,18 +732,29 @@ function drawButton(testX, testY){
     // text
     fill(224,255,255);
     strokeWeight(1);
-    textSize(26);
+    textSize(47);
     textStyle(BOLD);
     textAlign(CENTER,CENTER);
     text("START",startButtonX,startButtonY);
     
     //if start button is pressed, game starts
-    if(mouseIsPressed == true){
-      start = true;
+    if(mouseIsPressed == true && instruction == false){
+      // start = true;
+      instruction = true;
+      instructionScreen();
       sound.stop();
       //play game music??
     }
+    
+    if(mouseIsPressed == true && instruction == true){
+      start = true;
+    }
   }
+}
+
+function instructionScreen(){
+  background(0);
+  drawButton(mouseX,mouseY);
 }
 
 // objects to hold positions of the dog and sheep sprite within a larger image to determine which image to use
